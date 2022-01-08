@@ -12,7 +12,7 @@ class Player
   end
 
   def print_instructions
-    puts 'Welcome to Wordler!'
+    puts "\nWelcome to Wordler!"
     puts 'I\'ll make guesses, and you tell me the result'
     puts 'You type "g" for green, "y" for yellow, and "." for grey'
   end
@@ -41,6 +41,7 @@ class Player
 
   def handle_results(next_guess_word)
     puts 'Enter results (for example "ggy...") or "q" to quit'
+    print '> '
     results = gets.chomp
 
     quit if results == 'q'
@@ -53,13 +54,13 @@ class Player
   end
 
   def lose
-    puts 'I lose. Let\'s play again!'
+    puts "\nI lose. Let\'s play again!"
     puts '------'
     reset
   end
 
   def win
-    puts 'I win. Let\'s play again!'
+    puts "\nI win. Let\'s play again!"
     puts '------'
     reset
   end
@@ -70,4 +71,4 @@ class Player
   end
 end
 
-Player.new(log: true).play
+Player.new.play
