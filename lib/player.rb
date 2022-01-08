@@ -4,10 +4,17 @@ class Player
   def initialize(length = DEFAULT_WORD_LENGTH, log: false)
     @scorer = Scorer.new(length, log:)
     reset
+    print_instructions
   end
 
   def reset
     @wordler = Wordler.new(@scorer)
+  end
+
+  def print_instructions
+    puts 'Welcome to Wordler!'
+    puts 'I\'ll make guesses, and you tell me the result'
+    puts 'You type "g" for green, "y" for yellow, and "." for grey'
   end
 
   def make_guess
@@ -17,6 +24,7 @@ class Player
       lose
       false
     else
+      puts
       puts "I guess #{next_guess_word}"
       next_guess_word
     end
@@ -32,8 +40,11 @@ class Player
   end
 
   def handle_results(next_guess_word)
-    puts 'Enter results'
+    puts 'Enter results (for example "ggy...") or "q" to quit'
     results = gets.chomp
+
+    quit if results == 'q'
+
     if results == 'ggggg' || results.empty?
       win
     else
@@ -51,6 +62,11 @@ class Player
     puts 'I win. Let\'s play again!'
     puts '------'
     reset
+  end
+
+  def quit
+    puts 'Thanks for playing!'
+    exit
   end
 end
 
