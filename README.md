@@ -25,4 +25,10 @@ Enter results (for example "ggy...") or "q" to quit
 I win. Let's play again!
 ```
 
+You can try it live on Replit, or clone it and launch by running
+```
+ruby lib/player.rb
+```
+
 I'm no AI expert, so the algorithm is quite simple. Suggestions and contributions welcome!
+
