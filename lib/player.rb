@@ -4,8 +4,8 @@ require_relative 'wordler'
 
 # Supports playing from the terminal
 class Player
-  def initialize
-    @scorer = Scorer.new
+  def initialize(length = DEFAULT_WORD_LENGTH, log: false)
+    @scorer = Scorer.new(length, log)
     reset
     print_instructions
   end
@@ -44,7 +44,7 @@ class Player
   end
 
   def handle_results(next_guess_word)
-    puts 'Type that into Wordle on the web, then enter results (for example "ggy...") or "q" to quit'
+    puts 'Enter results (for example "ggy...") or "q" to quit'
     print '> '
     results = gets.chomp
 

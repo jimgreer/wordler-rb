@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'set'
+require 'debug'
 require_relative 'scorer'
 require_relative 'util'
 
