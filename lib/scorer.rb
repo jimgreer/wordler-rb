@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'debug'
 require_relative 'util'
 
 # Guesses the next word
@@ -8,10 +7,10 @@ class Scorer
   DEFAULT_DUPE_PENALTY = 0.25
   FIRST_GUESS = 'AROSE'
 
-  def initialize(length = DEFAULT_WORD_LENGTH, dupe_penalty = DEFAULT_DUPE_PENALTY, log: false)
-    @word_length = length
-    @dupe_penalty = dupe_penalty
-    @log = log
+  def initialize
+    @word_length = DEFAULT_WORD_LENGTH
+    @dupe_penalty = DEFAULT_DUPE_PENALTY
+    @log = false
   end
 
   def make_guess(dictionary:, first_guess: false)
@@ -25,7 +24,7 @@ class Scorer
     calculate_word_frequencies
     # sort dictionary by score
     @dictionary = sort_dictionary
-    @dictionary.take(10).each { |word| puts "#{word}: #{@score_log[word]}" } if @log
+    @dictionary.take(10).each { |word| puts("#{word}: #{@score_log[word]}") } if @log
     @dictionary.first
   end
 
@@ -61,7 +60,7 @@ class Scorer
 
   def normalize_word_frequencies(max_word_frequency)
     @word_frequencies.each do |word, frequency|
-      @word_frequencies[word] = frequency.to_f / max_word_frequency
+      @word_frequencies[word] = Float(frequency) / max_word_frequency
     end
   end
 
@@ -78,11 +77,13 @@ class Scorer
   end
 
   def count_duplicates(word)
-    word.chars.each_with_object(Hash.new(0)) { |letter, counts| counts[letter] += 1 }.values.count { |v| v > 1 }
+    word.chars.each_with_object(Hash.new(0)) { |letter, counts| counts[letter] += 1 }
+        .values.count { |v| v > 1 }
   end
 
   def sort_dictionary
     @score_log.clear
-    @dictionary.sort_by { |word| score_word(word) }.reverse
+    @dictionary.sort_by { |word| score_word(word) }
+               .reverse
   end
 end
