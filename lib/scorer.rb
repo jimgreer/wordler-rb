@@ -1,12 +1,9 @@
-# frozen_string_literal: true
-
 require 'debug'
 require_relative 'util'
 
-# Guesses the next word
 class Scorer
   DEFAULT_DUPE_PENALTY = 0.25
-  FIRST_GUESS = 'AROSE'
+  FIRST_GUESS = 'AROSE'.freeze
 
   def initialize(length = DEFAULT_WORD_LENGTH, dupe_penalty = DEFAULT_DUPE_PENALTY, log: false)
     @word_length = length

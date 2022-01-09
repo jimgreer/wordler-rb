@@ -1,11 +1,8 @@
-# frozen_string_literal: true
-
 require_relative 'wordler'
 
-# Supports playing from the terminal
 class Player
   def initialize(length = DEFAULT_WORD_LENGTH, log: false)
-    @scorer = Scorer.new(length, log)
+    @scorer = Scorer.new(length, log:)
     reset
     print_instructions
   end
@@ -16,7 +13,6 @@ class Player
 
   def print_instructions
     puts "\nWelcome to Wordler!"
-    puts 'I like to play Wordle in hard mode.'
     puts 'I\'ll make guesses, and you tell me the result'
     puts 'You type "g" for green, "y" for yellow, and "." for grey'
   end

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 DEFAULT_WORD_LENGTH = 5
 def load_words(length = DEFAULT_WORD_LENGTH)
   words = []
