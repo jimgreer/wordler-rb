@@ -1,12 +1,15 @@
+# frozen_string_literal: true
+
 require 'set'
 require 'debug'
 require_relative 'scorer'
 require_relative 'util'
 
+# encapsulates a word guess and the results of the guess
 class Guess
-  GREEN = 'g'.freeze
-  YELLOW = 'y'.freeze
-  GREY = '.'.freeze
+  GREEN = 'g'
+  YELLOW = 'y'
+  GREY = '.'
 
   def initialize(word, results)
     @word = word.upcase
